@@ -9,17 +9,20 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    env:
-      NEWSAPI_KEY: dummy_key   # 👈 ensures app.py always has a key during tests
     steps:
       - uses: actions/checkout@v4
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+
       - name: Run tests
-        run: pytest -q
+        run: |
+          export PYTHONPATH=$PYTHONPATH:$(pwd)
+          pytest -q
