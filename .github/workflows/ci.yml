@@ -24,5 +24,6 @@ jobs:
 
       - name: Run tests
         run: |
+          # Ensure app.py can be imported
           export PYTHONPATH=$PYTHONPATH:$(pwd)
           pytest -q
