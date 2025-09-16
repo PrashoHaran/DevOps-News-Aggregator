@@ -9,6 +9,8 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    env:
+      NEWSAPI_KEY: dummy_key   # 👈 ensures app.py always has a key during tests
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python
